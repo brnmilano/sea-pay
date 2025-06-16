@@ -1,0 +1,49 @@
+:root {
+  --brand-color-500: #3183d5;
+  --brand-color-300: #5d9cdb;
+  --brand-color-100: #eaf3fb;
+
+  --text-default: #3e3d3d;
+  --text-light: #939599;
+
+  --semantic-red: #f26c6c;
+
+  --semantic-gray-400: #989898;
+  --semantic-gray-100: #f9fafb;
+
+  --background: #f0f0f0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  background-color: var(--background);
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+p {
+  font-size: 0.875rem;
+  font-weight: normal;
+}
+
+button {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
