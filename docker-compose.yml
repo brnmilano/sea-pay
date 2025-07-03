@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+# Esse é um serviço roda o React em modo de desenvolvimento
+# O docker-compose gerencia containers e ele vai colocar tudo que é necessário para rodar o React
+# Para fazer um serviço, você precisa de uma imagem, posso usar um docker-hub ou criar a minha própria imagem
+# Nesse caso, eu estou criando a minha própria imagem
+# A imagem é criada a partir do Dockerfile que está na raiz do projeto
+# Se eu for utilizar uma imagem já pronta (docker-hub ou oficial), eu devo usar o campo image: nome-da-imagem
+# O campo build: . indica que o Dockerfile está no diretório atual
+  react:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - HOST=0.0.0.0
+    command: npm run dev

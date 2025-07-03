@@ -12,6 +12,9 @@
   --semantic-gray-100: #f9fafb;
 
   --background: #f0f0f0;
+
+  --semantic-white: #ffffff;
+  --semantic-black: #000000;
 }
 
 body {
@@ -33,7 +36,8 @@ h2 {
   font-weight: bold;
 }
 
-p {
+p,
+address {
   font-size: 0.875rem;
   font-weight: normal;
 }
@@ -46,4 +50,14 @@ button {
 label {
   font-size: 0.875rem;
   font-weight: bold;
+}
+
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
 }
