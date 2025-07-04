@@ -36,3 +36,14 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.
 ### Changed
 
 - **Global Styling**: Refatoração do sistema de estilos globais com implementação de variáveis CSS personalizadas e melhorias na responsividade do layout
+
+## [0.3.0] - 03-07-2025
+
+### Added
+
+- **Dependencies**: Adição de novas bibliotecas essenciais para o desenvolvimento da aplicação
+- **Layout Components**: Criação da tela de login
+
+### Changed
+
+- **Improved comments**: Melhoria e organização dos comentários feitos no arquivo next.config.ts
