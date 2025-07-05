@@ -52,8 +52,7 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.
 
 ### Added
 
-- **Brand Assets**: Adição do logo oficial do projeto
-- Logo em formato SVG para máxima qualidade e escalabilidade
+- **Brand Assets**: Adição do logo oficial do projeto. Logo em formato SVG para máxima qualidade e escalabilidade
 - **Dependencies**: Adição da biblioteca de ícones Lucide React
 - **UI Components**: Criação do componente Button
   - Interface `ButtonProps` estendendo `ButtonHTMLAttributes` permitindo a máxima flexibilidade das propriedades
