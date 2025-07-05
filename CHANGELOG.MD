@@ -47,3 +47,35 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.
 ### Changed
 
 - **Improved comments**: Melhoria e organização dos comentários feitos no arquivo next.config.ts
+
+## [0.4.0] - 04-07-2025
+
+### Added
+
+- **Brand Assets**: Adição do logo oficial do projeto
+- Logo em formato SVG para máxima qualidade e escalabilidade
+- **Dependencies**: Adição da biblioteca de ícones Lucide React
+- **UI Components**: Criação do componente Button
+  - Interface `ButtonProps` estendendo `ButtonHTMLAttributes` permitindo a máxima flexibilidade das propriedades
+  - Enum `ButtonVariants` com variantes PRIMARY, SECONDARY e TEXT
+  - Enum `ButtonSizes` com tamanhos SMALL, MEDIUM e LARGE
+  - Suporte à acessibilidade com propriedade `ariaLabel`
+  - Estilização para cada tipo de variant
+  - Arquitetura modular com separação de tipos e enums em `Button.types.ts`
+  - Sistema de barrel exports para importações otimizadas
+- **UI Components**: Criação do componente Input
+  - Interface `InputProps` estendendo `InputHTMLAttributes` permitindo a máxima flexibilidade das propriedades
+  - Ícones customizáveis com posicionamento configurável
+  - Funcionalidade de toggle de visibilidade de senha
+  - Otimizações de performance com `useCallback`, `useMemo` e `useId`
+  - Suporte à acessibilidade com propriedade `ariaLabel` e navegação por teclado
+  - Arquitetura modular com separação de tipos em `Input.types.ts`
+  - Sistema de barrel exports para importações otimizadas
+- **Testing Infrastructure**: Implementação de testes manuais para os componentes criados
+
+### Changed
+
+- **Global Styling**: Novas variáveis CSS personalizadas para maior consistência visual
+  - Implementação de breakpoints responsivos em `_breakpoints.scss`
+  - Melhorias na tipografia e sistema de cores
+  - Otimizações de performance no carregamento de estilos
