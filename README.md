@@ -32,4 +32,4 @@ docker build --target runner -t sea-pay:prod .
 docker run -p 3000:3000 sea-pay:prod
 ``` -->
 
-📖 **Documentação completa:** Veja [DOCKER_OPTIMIZATION.md](./DOCKER_OPTIMIZATION.md) e [OPTIMIZATION_REPORT.md](./OPTIMIZATION_REPORT.md)
+📖 **Documentação completa:** Veja [docker-commands.md](docker\docker-commands.md)

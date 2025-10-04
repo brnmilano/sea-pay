@@ -41,12 +41,6 @@ const nextConfig: NextConfig = {
     "date-fns": {
       transform: "date-fns/{{member}}",
     },
-    "@mui/material": {
-      transform: "@mui/material/{{member}}",
-    },
-    "@mui/icons-material": {
-      transform: "@mui/icons-material/{{member}}",
-    },
   },
 
   async redirects() {
