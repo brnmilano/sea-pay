@@ -78,3 +78,66 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.
   - Implementação de breakpoints responsivos em `_breakpoints.scss`
   - Melhorias na tipografia e sistema de cores
   - Otimizações de performance no carregamento de estilos
+
+## [0.5.0] - 10-07-2025
+
+### Added
+
+- **UI Components**: Alterações no componente Input
+  - Criação da propriedade `label` para exibição de rótulos (nomes) acima dos campos de entrada
+  - Adição da propriedade label, errors e registerField
+  - Estilização específica para labels com espaçamento e tipografia adequados
+  - Estilização específica para mensagens de erro no input
+
+## [0.6.0] - 04-10-2025
+
+### Added
+
+- **Authentication System**: Implementação completa do sistema de autenticação
+  - Middleware de autenticação (`middleware.ts`) com proteção de rotas e gerenciamento de sessões via cookies
+  - Rotas públicas configuradas (`/login`, `/error`)
+  - Redirecionamento automático para login em rotas protegidas sem autenticação
+  - Sistema de tratamento de erros no middleware
+- **Validation System**: Sistema robusto de validação de formulários
+  - Schema centralizado de validação (`schemas.ts`) com Zod
+  - Schema específico para login (`loginValidationSchema.ts`) com validação de CPF/CNPJ
+  - Integração com React Hook Form usando `@hookform/resolvers`
+  - Mensagens de validação padronizadas em `messages.ts`
+- **Utilities**: Funções utilitárias para formatação e validação
+  - Regex para validação de CPF (11 dígitos) e CNPJ (14 dígitos)
+  - Função `maskCpfCnpj` para aplicação de máscara em CPF/CNPJ
+  - Mensagens de erro padronizadas e reutilizáveis
+- **Login Page**: Tela de login completa e funcional
+  - Página de login (`login/page.tsx`) com metadata SEO otimizado
+  - Componente de login (`login.tsx`) com formulário validado
+  - Validação em tempo real de campos CPF/CNPJ e senha
+  - Layout responsivo com imagem de background
+  - Integração com componentes Button e Input
+  - Estilização SCSS modular (`login.module.scss`)
+- **Protected Routes**: Estrutura de rotas protegidas
+  - Pasta `(protected)` criada para rotas autenticadas
+  - Dashboard inicial (`dashboard/page.tsx`) configurado
+  - Arquivo de actions para o dashboard (`actions.ts`)
+  - Estilização modular do dashboard (`page.module.scss`)
+  - Estrutura preparada para páginas de transações e transferências
+- **Error Handling**: Página 404 personalizada
+  - Componente `not-found.tsx` com design customizado
+  - Metadata SEO para página de erro
+  - Link de retorno para página inicial
+  - Estilização inline responsiva
+- **Font System**: Sistema de tipografia otimizado
+  - Configuração de fontes Google (Geist e Geist Mono)
+  - Variáveis CSS para fontes (`--font-geist-sans`, `--font-geist-mono`)
+  - Integração com layout global
+- **Project Structure**: Organização de pastas para componentes futuros
+  - Estrutura preparada para componentes de feedback (Modal, Toast)
+  - Estrutura preparada para componentes de layout (Header, SideMenu)
+  - Estrutura preparada para componentes UI adicionais (Modal, Select)
+  - Separação clara entre rotas públicas e protegidas
+
+### Changed
+
+- **Component Architecture**: Melhorias na arquitetura de componentes
+  - Componentização mais granular com separação de responsabilidades
+  - Uso de barrel exports para imports otimizados
+  - Tipagem forte com TypeScript em todos os componentes
