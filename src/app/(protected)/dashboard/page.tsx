@@ -1,11 +1,12 @@
-"use client";
+import { Metadata } from "next";
+import Dashboard from "./src/components/dashboard";
 
-import styles from "./page.module.scss";
+export const metadata: Metadata = {
+  title: "seaPay - Dashboard",
+  description:
+    "Bem-vindo ao painel de controle do seaPay, onde você pode gerenciar suas transações e configurações.",
+};
 
-export default function Home() {
-  return (
-    <main>
-      <div className={styles.container}>Home</div>
-    </main>
-  );
+export default function DashboardPage() {
+  return <Dashboard />;
 }

@@ -1,27 +1,35 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
 import {
   LoginSchemaProps,
   LoginValidationSchema,
-} from "../schemas/loginValidationSchema";
+} from "../schemas/login-validation-schema";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import {
   ButtonSizes,
   ButtonVariants,
 } from "@/components/ui/Button/Button.type";
-import styles from "./login.module.scss";
+import { FAKE_USERS } from "@/utils/fake-users";
+import { setAuthCookie } from "@/services/auth/auth-cookies";
 import Logo from "../../../../../../public/logo-seapay.svg";
 import BackgroundImage from "../../../../../../public/background-image.png";
+import styles from "./login.module.scss";
 
 export default function Login() {
+  const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<LoginSchemaProps>({
     resolver: zodResolver(LoginValidationSchema),
@@ -32,62 +40,101 @@ export default function Login() {
     },
   });
 
-  const loginValue = watch("login");
-  const passwordValue = watch("password");
+  const onSubmit = async (data: LoginSchemaProps) => {
+    setIsLoading(true);
+    console.log("🔐 Tentando fazer login com:", { login: data.login });
 
-  console.log("Login Value:", loginValue);
-  console.log("Password Value:", passwordValue);
+    try {
+      // Simular delay de rede (300ms)
+      await new Promise((resolve) => setTimeout(resolve, 300));
 
-  const onSubmit = (data: LoginSchemaProps) => {
-    if (data.login === "teste" && data.password === "teste") {
-      alert("Login realizado com sucesso!");
-    } else {
-      alert("Login ou senha inválidos.");
+      // Buscar usuário
+      const user = FAKE_USERS.find(
+        (user) => user.login === data.login && user.password === data.password,
+      );
+
+      if (!user) {
+        toast.error("Login ou senha inválidos");
+
+        setIsLoading(false);
+        return;
+      }
+
+      // Salvar token e dados do usuário em cookies (Server Action)
+      await setAuthCookie({
+        id: user.id,
+        login: user.login,
+        name: user.name,
+        email: user.email,
+        type: user.type,
+      });
+
+      // Exibir mensagem de sucesso
+      toast.success(`Bem-vindo(a), ${user.name}!`);
+
+      // Redirecionar para o dashboard
+      router.push("/dashboard");
+    } catch (error) {
+      console.error("Erro ao fazer login:", { error });
+
+      toast.error("Erro ao conectar com o servidor");
+      setIsLoading(false);
     }
-
-    console.log(data);
   };
 
   return (
     <main className={styles.containerLogin}>
       <section className={styles.loginSection}>
-        <h1>Acesse sua conta</h1>
-
-        <Image
-          src={Logo}
-          alt="Logo seaPay"
-          width={114}
-          height={42}
-          quality={70}
-          priority={true}
-          loading="eager"
-        />
-
-        <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.inputContainer}>
-            <Input
-              label="Login"
-              placeholder="Digite seu CPF ou CNPJ cadastrado"
-              errors={errors}
-              {...register("login")}
-            />
-
-            <Input
-              label="Senha"
-              placeholder="Digite sua senha"
-              type="password"
-              errors={errors}
-              {...register("password")}
-            />
-          </div>
-
-          <Button
-            text="Entrar"
-            ariaLabel="Entrar"
-            size={ButtonSizes.LARGE}
-            buttonVariant={ButtonVariants.PRIMARY}
+        <div className={styles.loginContent}>
+          <Image
+            src={Logo}
+            alt="Logo seaPay"
+            width={114}
+            height={42}
+            quality={70}
+            priority={true}
+            loading="eager"
+            className={styles.logo}
           />
-        </form>
+
+          <h1 className={styles.title}>Acesse sua conta</h1>
+
+          <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
+            <div className={styles.inputContainer}>
+              <Input
+                label="Login"
+                placeholder="Digite seu CPF ou CNPJ cadastrado"
+                errors={errors}
+                registerField="login"
+                {...register("login")}
+              />
+
+              <Input
+                label="Senha"
+                placeholder="Digite sua senha"
+                type="password"
+                errors={errors}
+                registerField="password"
+                {...register("password")}
+              />
+            </div>
+
+            <Button
+              text={isLoading ? "Entrando..." : "Entrar"}
+              ariaLabel="Entrar"
+              size={ButtonSizes.LARGE}
+              buttonVariant={ButtonVariants.PRIMARY}
+              disabled={isLoading}
+            />
+          </form>
+
+          <p className={styles.signupText}>
+            Ainda não é membro?{" "}
+            <a href="/signup" className={styles.signupLink}>
+              Abra sua conta!
+            </a>
+          </p>
+        </div>
       </section>
 
       <aside className={styles.loginImage}>
@@ -95,11 +142,9 @@ export default function Login() {
           src={BackgroundImage}
           alt="Pessoa sorrindo com celular"
           priority={true}
-          style={{
-            objectFit: "cover",
-            aspectRatio: "9/16",
-          }}
           fill
+          quality={90}
+          sizes="50vw"
         />
       </aside>
     </main>

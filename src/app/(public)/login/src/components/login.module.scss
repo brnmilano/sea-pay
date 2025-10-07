@@ -1,7 +1,5 @@
 .containerLogin {
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
 
   .loginSection {
@@ -10,30 +8,65 @@
     align-items: center;
     justify-content: center;
     width: 50%;
+    padding: 2rem;
 
-    h1 {
-      align-self: flex-start;
-      width: 100%;
-    }
-
-    .loginForm {
+    .loginContent {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
       width: 100%;
-      max-width: 24.0625rem;
-      padding: 20px;
-      border-radius: 8px;
+      max-width: 25rem;
 
-      .inputContainer {
+      .logo {
+        margin-bottom: 3rem;
+      }
+
+      .title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 2rem;
+        align-self: flex-start;
+      }
+
+      .loginForm {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 0.75rem;
         width: 100%;
-        margin-bottom: 3.125rem;
+
+        .inputContainer {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 2rem;
+          width: 100%;
+          margin-bottom: 2rem;
+        }
+
+        button {
+          width: 100%;
+        }
+      }
+
+      .signupText {
+        margin-top: 1.5rem;
+        font-size: 0.875rem;
+        color: #666;
+        text-align: center;
+        width: 100%;
+
+        .signupLink {
+          color: #0066cc;
+          font-weight: 600;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }

@@ -36,7 +36,12 @@
     border: none;
     outline: none;
     background: transparent;
-    color: var(--text-default);
+    color: var(--semantic-gray-400);
+
+    &::placeholder {
+      color: var(--semantic-gray-400);
+      font-weight: 100;
+    }
   }
 
   .icon {

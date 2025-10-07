@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import Footer from "@/components/layout/Footer/Footer";
 import "@/styles/globals.scss";
 import { geistMono, geistSans } from "@/fonts/fonts";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   icons: {
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div className="main-layout">
+          <Toaster position="top-center" reverseOrder={false} />
           <main className="content">{children}</main>
 
           <Footer />

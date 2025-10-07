@@ -141,3 +141,31 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.
   - Componentização mais granular com separação de responsabilidades
   - Uso de barrel exports para imports otimizados
   - Tipagem forte com TypeScript em todos os componentes
+
+## [0.7.0] - 07-10-2025
+
+### Added
+
+- **Sistema de Login**: Implementação completa do fluxo de autenticação
+  - Adicionado 3 usuários fakes para testes (CPF e CNPJ)
+  - Validação de credenciais com toasts
+- **Dashboard Protegido**: Página do dashboard sendo uma rota privada
+  - Exibição das informações do usuário logado
+  - Redirecionamento automático para login se não autenticado
+  - Botão de logout
+- **Gestão de Cookies**: Sistema seguro de autenticação com cookies httpOnly
+  - Cookies com proteção contra XSS
+  - Expiração automática do login em 7 dias
+  - Integração com middleware para validação de rotas
+- **Configurações gerais**: Adição da biblioteca de toasts react hot toast
+
+### Changed
+
+- **Layout da tela de Login**: Melhoria significativa no layout e estilização
+- **Arquitetura de Autenticação**:
+  - Ajustes no Middleware para validar cookies automaticamente
+- **Componente Input**: Correção na captura de valores com react-hook-form
+
+### Fixed
+
+- Problema de redirecionamento após login com cookies

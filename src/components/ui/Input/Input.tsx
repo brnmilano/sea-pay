@@ -38,6 +38,7 @@ export function Input({
   ...rest
 }: InputProps) {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+
   const isPasswordType = type === "password";
   const inputId = useId();
 
@@ -48,6 +49,8 @@ export function Input({
       ? "text"
       : "password"
     : type;
+
+  console.log("Input props:", { name, registerField, rest });
 
   const togglePasswordVisibility = useCallback(() => {
     setShowPassword((prev) => !prev);
@@ -105,6 +108,7 @@ export function Input({
           id={inputId}
           className={inputClasses}
           type={inputType}
+          name={name}
           {...rest}
         />
 
