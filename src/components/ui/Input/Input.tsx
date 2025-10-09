@@ -50,8 +50,6 @@ export function Input({
       : "password"
     : type;
 
-  console.log("Input props:", { name, registerField, rest });
-
   const togglePasswordVisibility = useCallback(() => {
     setShowPassword((prev) => !prev);
   }, []);
@@ -92,10 +90,6 @@ export function Input({
     }),
     [showPassword, inputId],
   );
-
-  const renderCount = useRef(0);
-  renderCount.current += 1;
-  console.log("esse componente re-renderizou", renderCount.current, "vezes");
 
   return (
     <div className={containerClasses}>

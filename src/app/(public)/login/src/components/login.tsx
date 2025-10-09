@@ -42,7 +42,6 @@ export default function Login() {
 
   const onSubmit = async (data: LoginSchemaProps) => {
     setIsLoading(true);
-    console.log("🔐 Tentando fazer login com:", { login: data.login });
 
     try {
       // Simular delay de rede (300ms)

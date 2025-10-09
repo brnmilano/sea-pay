@@ -169,3 +169,37 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.
 ### Fixed
 
 - Problema de redirecionamento após login com cookies
+
+## [0.8.0] - 08-10-2025
+
+### Added
+
+- **Testing Infrastructure**: Configuração do ambiente de testes
+  - Configuração do Jest para integração com o Next.js
+  - React Testing Library instalado e configurado
+  - Setup de testes com mocks globais do Next.js
+  - Mocks de assets estáticos na pasta `__mocks__/`
+  - Scripts de teste no package.json
+  - Dependências instaladas: jest-environment-jsdom, @testing-library/jest-dom, identity-obj-proxy, ts-node
+- **Unit Tests**: Testes unitários para a tela de login
+  - Snapshot test para detecção de mudanças na estrutura HTML
+  - Adição dos mocks de react-hot-toast e next/navigation
+  - Testes de sucesso e falha no login
+- **Documentation**: Documentação completa sobre testes no README.md
+  - Comandos para testes específicos
+
+### Changed
+
+- **jest.setup.ts**: Melhorias no mock do next/image
+  - Filtro de props específicas do componente <Image /> Next.js (priority, fill, quality, etc.)
+  - Precaução dos warnings de atributos não-booleanos no console dos testes
+- **README.md**: Expansão e melhorias na documentação
+  - Nova seção "Scripts disponíveis" organizada por categoria
+  - Seção Docker expandida com comandos de gerenciamento e produção
+  - Adicionadas dicas sobre Hot Reload, volumes e portas
+  - Seção de testes expandida com exemplos práticos e snapshot testing
+
+### Fixed
+
+- Erros de tipagem no jest.config.ts resolvidos
+- Warnings de console durante execução de testes ajustados

@@ -1,201 +1,162 @@
 /**
- * For a detailed explanation regarding each configuration property, visit:
- * https://jestjs.io/docs/configuration
+ * Configuração do Jest para testes unitários
+ *
+ * @description
+ * Este arquivo configura o Jest para trabalhar com Next.js, TypeScript,
+ * React Testing Library e módulos CSS/SCSS.
+ *
+ * @see https://jestjs.io/docs/getting-started
+ * @see https://jestjs.io/docs/configuration
+ * @see https://nextjs.org/docs/app/guides/testing/jest
  */
 
-import type {Config} from 'jest';
+import type { Config } from "jest";
+import nextJest from "next/jest";
 
-const config: Config = {
-  // All imported modules in your tests should be mocked automatically
-  // automock: false,
+/**
+ * Cria a configuração base do Jest para Next.js
+ * Isso garante que o Jest possa carregar next.config.js e variáveis de ambiente
+ */
+const createJestConfig = nextJest({
+  dir: "./",
+});
 
-  // Stop running tests after `n` failures
-  // bail: 0,
-
-  // The directory where Jest should store its cached dependency information
-  // cacheDirectory: "C:\\Users\\brnmi\\AppData\\Local\\Temp\\jest",
-
-  // Automatically clear mock calls, instances, contexts and results before every test
+/**
+ * Configurações customizadas do Jest
+ */
+const config: Partial<Config> = {
+  /**
+   * Limpa automaticamente os mocks antes de cada teste
+   * Isso evita que mocks de um teste afetem outros testes
+   */
   clearMocks: true,
 
-  // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
+  /**
+   * Define se a cobertura de código será coletada durante a execução dos testes
+   * false: Testes executam mais rápido (use 'npm test')
+   * true: Gera relatório de cobertura (use 'npm run test:coverage')
+   */
+  collectCoverage: false,
 
-  // An array of glob patterns indicating a set of files for which coverage information should be collected
-  // collectCoverageFrom: undefined,
+  /**
+   * Padrões de arquivos para coletar cobertura de código
+   * Inclui: Todos os arquivos .js, .jsx, .ts, .tsx em src/
+   * Exclui: Arquivos de tipos, stories, testes, pages, layouts e middleware
+   */
+  collectCoverageFrom: [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/**/*.d.ts",
+    "!src/**/*.stories.{js,jsx,ts,tsx}",
+    "!src/**/*.test.{js,jsx,ts,tsx}",
+    "!src/**/*.spec.{js,jsx,ts,tsx}",
+    "!src/app/**/page.tsx",
+    "!src/app/**/layout.tsx",
+    "!src/middleware.ts",
+  ],
 
-  // The directory where Jest should output its coverage files
+  /**
+   * Diretório onde os relatórios de cobertura serão salvos
+   */
   coverageDirectory: "coverage",
 
-  // An array of regexp pattern strings used to skip coverage collection
-  // coveragePathIgnorePatterns: [
-  //   "\\\\node_modules\\\\"
-  // ],
-
-  // Indicates which provider should be used to instrument code for coverage
+  /**
+   * Motor usado para instrumentar o código e calcular a cobertura
+   * v8: Mais rápido e preciso (nativo do Node.js)
+   */
   coverageProvider: "v8",
 
-  // A list of reporter names that Jest uses when writing coverage reports
-  // coverageReporters: [
-  //   "json",
-  //   "text",
-  //   "lcov",
-  //   "clover"
-  // ],
+  /**
+   * Formatos de relatório de cobertura a serem gerados
+   * - json: Dados brutos em JSON
+   * - text: Tabela no terminal
+   * - lcov: Para ferramentas como SonarQube e Codecov
+   * - clover: Formato XML
+   * - html: Relatório visual navegável (coverage/index.html)
+   */
+  coverageReporters: ["json", "text", "lcov", "clover", "html"],
 
-  // An object that configures minimum threshold enforcement for coverage results
-  // coverageThreshold: undefined,
+  /**
+   * Ambiente de teste a ser usado
+   * jsdom: Simula um navegador (necessário para testes de componentes React)
+   */
+  testEnvironment: "jsdom",
 
-  // A path to a custom dependency extractor
-  // dependencyExtractor: undefined,
+  /**
+   * Arquivo de configuração executado após o ambiente de teste ser configurado
+   * Configura React Testing Library, mocks do Next.js e supressão de warnings
+   */
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 
-  // Make calling deprecated APIs throw helpful error messages
-  // errorOnDeprecated: false,
+  /**
+   * Mapeamento de módulos para resolver imports e mockar assets
+   */
+  moduleNameMapper: {
+    /**
+     * Resolve o alias @/ para a pasta src/
+     * Exemplo: import { Button } from '@/components/Button'
+     */
+    "^@/(.*)$": "<rootDir>/src/$1",
 
-  // The default configuration for fake timers
-  // fakeTimers: {
-  //   "enableGlobally": false
-  // },
+    /**
+     * Mocka CSS Modules (arquivos .module.css, .module.scss)
+     * Retorna um objeto com as classes CSS como propriedades
+     * Exemplo: styles.button → { button: 'button' }
+     */
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
 
-  // Force coverage collection from ignored files using an array of glob patterns
-  // forceCoverageMatch: [],
+    /**
+     * Mocka arquivos CSS/SCSS não-modulares
+     * Retorna um objeto vazio para evitar erros de parsing
+     */
+    "^.+\\.(css|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
 
-  // A path to a module which exports an async function that is triggered once before all test suites
-  // globalSetup: undefined,
+    /**
+     * Mocka importações de imagens
+     * Retorna uma string simples ao invés do arquivo real
+     */
+    "^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i":
+      "<rootDir>/__mocks__/fileMock.js",
+  },
 
-  // A path to a module which exports an async function that is triggered once after all test suites
-  // globalTeardown: undefined,
+  /**
+   * Padrões de arquivos que serão identificados como testes
+   * - Arquivos dentro de pastas __tests__/
+   * - Arquivos com sufixo .test ou .spec
+   */
+  testMatch: [
+    "**/__tests__/**/*.?([mc])[jt]s?(x)",
+    "**/?(*.)+(spec|test).?([mc])[jt]s?(x)",
+  ],
 
-  // A set of global variables that need to be available in all test environments
-  // globals: {},
+  /**
+   * Padrões de arquivos que NÃO devem ser transformados pelo Jest
+   * - node_modules: Bibliotecas externas já estão compiladas
+   * - CSS Modules: São tratados pelo moduleNameMapper
+   */
+  transformIgnorePatterns: [
+    "/node_modules/",
+    "^.+\\.module\\.(css|sass|scss)$",
+  ],
 
-  // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
-  // maxWorkers: "50%",
+  /**
+   * Extensões de arquivo que o Jest deve processar
+   */
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
 
-  // An array of directory names to be searched recursively up from the requiring module's location
-  // moduleDirectories: [
-  //   "node_modules"
-  // ],
+  /**
+   * Diretórios que devem ser ignorados ao procurar por testes
+   */
+  testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
 
-  // An array of file extensions your modules use
-  // moduleFileExtensions: [
-  //   "js",
-  //   "mjs",
-  //   "cjs",
-  //   "jsx",
-  //   "ts",
-  //   "mts",
-  //   "cts",
-  //   "tsx",
-  //   "json",
-  //   "node"
-  // ],
-
-  // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
-
-  // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-  // modulePathIgnorePatterns: [],
-
-  // Activates notifications for test results
-  // notify: false,
-
-  // An enum that specifies notification mode. Requires { notify: true }
-  // notifyMode: "failure-change",
-
-  // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
-
-  // Run tests from one or more projects
-  // projects: undefined,
-
-  // Use this configuration option to add custom reporters to Jest
-  // reporters: undefined,
-
-  // Automatically reset mock state before every test
-  // resetMocks: false,
-
-  // Reset the module registry before running each individual test
-  // resetModules: false,
-
-  // A path to a custom resolver
-  // resolver: undefined,
-
-  // Automatically restore mock state and implementation before every test
-  // restoreMocks: false,
-
-  // The root directory that Jest should scan for tests and modules within
-  // rootDir: undefined,
-
-  // A list of paths to directories that Jest should use to search for files in
-  // roots: [
-  //   "<rootDir>"
-  // ],
-
-  // Allows you to use a custom runner instead of Jest's default test runner
-  // runner: "jest-runner",
-
-  // The paths to modules that run some code to configure or set up the testing environment before each test
-  // setupFiles: [],
-
-  // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
-
-  // The number of seconds after which a test is considered as slow and reported as such in the results.
-  // slowTestThreshold: 5,
-
-  // A list of paths to snapshot serializer modules Jest should use for snapshot testing
-  // snapshotSerializers: [],
-
-  // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-node",
-
-  // Options that will be passed to the testEnvironment
-  // testEnvironmentOptions: {},
-
-  // Adds a location field to test results
-  // testLocationInResults: false,
-
-  // The glob patterns Jest uses to detect test files
-  // testMatch: [
-  //   "**/__tests__/**/*.?([mc])[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).?([mc])[jt]s?(x)"
-  // ],
-
-  // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  // testPathIgnorePatterns: [
-  //   "\\\\node_modules\\\\"
-  // ],
-
-  // The regexp pattern or array of patterns that Jest uses to detect test files
-  // testRegex: [],
-
-  // This option allows the use of a custom results processor
-  // testResultsProcessor: undefined,
-
-  // This option allows use of a custom test runner
-  // testRunner: "jest-circus/runner",
-
-  // A map from regular expressions to paths to transformers
-  // transform: undefined,
-
-  // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "\\\\node_modules\\\\",
-  //   "\\.pnp\\.[^\\\\]+$"
-  // ],
-
-  // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
-  // unmockedModulePathPatterns: undefined,
-
-  // Indicates whether each individual test should be reported during the run
-  // verbose: undefined,
-
-  // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
-  // watchPathIgnorePatterns: [],
-
-  // Whether to use watchman for file crawling
-  // watchman: true,
+  /**
+   * Usa o Watchman para detecção de mudanças em arquivos (mais rápido)
+   */
+  watchman: true,
 };
 
-export default config;
+/**
+ * Exporta a configuração processada pelo Next.js
+ * O createJestConfig é assíncrono e adiciona configurações adicionais do Next.js
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default createJestConfig(config as any);

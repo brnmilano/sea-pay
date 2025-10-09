@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Login Component should match snapshot 1`] = `
+<div>
+  <main
+    class="containerLogin"
+  >
+    <section
+      class="loginSection"
+    >
+      <div
+        class="loginContent"
+      >
+        <img
+          alt="Logo seaPay"
+          class="logo"
+          height="42"
+          src="[object Object]"
+          width="114"
+        />
+        <h1
+          class="title"
+        >
+          Acesse sua conta
+        </h1>
+        <form
+          class="loginForm"
+        >
+          <div
+            class="inputContainer"
+          >
+            <div
+              class="container undefined"
+            >
+              <label
+                class="label"
+                for="«rg»"
+              >
+                Login
+              </label>
+              <div
+                class="content"
+              >
+                <input
+                  class="input undefined"
+                  id="«rg»"
+                  name="login"
+                  placeholder="Digite seu CPF ou CNPJ cadastrado"
+                  type="text"
+                />
+              </div>
+              <div
+                class="errorMessage undefined"
+              >
+                <p />
+              </div>
+            </div>
+            <div
+              class="container undefined"
+            >
+              <label
+                class="label"
+                for="«rh»"
+              >
+                Senha
+              </label>
+              <div
+                class="content"
+              >
+                <input
+                  class="input undefined"
+                  id="«rh»"
+                  name="password"
+                  placeholder="Digite sua senha"
+                  type="password"
+                />
+                <span
+                  aria-controls="«rh»"
+                  aria-label="Mostrar senha"
+                  aria-pressed="false"
+                  class="icon clickable"
+                  role="button"
+                  tabindex="0"
+                  title="Mostrar senha"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-lock"
+                    fill="none"
+                    height="20"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      height="11"
+                      rx="2"
+                      ry="2"
+                      width="18"
+                      x="3"
+                      y="11"
+                    />
+                    <path
+                      d="M7 11V7a5 5 0 0 1 10 0v4"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <div
+                class="errorMessage undefined"
+              >
+                <p />
+              </div>
+            </div>
+          </div>
+          <button
+            aria-label="Entrar"
+            class="button primary size-large"
+            data-size="large"
+            data-variant="primary"
+          >
+            Entrar
+          </button>
+        </form>
+        <p
+          class="signupText"
+        >
+          Ainda não é membro?
+           
+          <a
+            class="signupLink"
+            href="/signup"
+          >
+            Abra sua conta!
+          </a>
+        </p>
+      </div>
+    </section>
+    <aside
+      class="loginImage"
+    >
+      <img
+        alt="Pessoa sorrindo com celular"
+        src="[object Object]"
+      />
+    </aside>
+  </main>
+</div>
+`;
