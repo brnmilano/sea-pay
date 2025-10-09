@@ -44,10 +44,8 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      // Simular delay de rede (300ms)
       await new Promise((resolve) => setTimeout(resolve, 300));
 
-      // Buscar usuário
       const user = FAKE_USERS.find(
         (user) => user.login === data.login && user.password === data.password,
       );
@@ -68,10 +66,8 @@ export default function Login() {
         type: user.type,
       });
 
-      // Exibir mensagem de sucesso
       toast.success(`Bem-vindo(a), ${user.name}!`);
 
-      // Redirecionar para o dashboard
       router.push("/dashboard");
     } catch (error) {
       console.error("Erro ao fazer login:", { error });
@@ -142,8 +138,8 @@ export default function Login() {
           alt="Pessoa sorrindo com celular"
           priority={true}
           fill
-          quality={90}
           sizes="50vw"
+          quality={90}
         />
       </aside>
     </main>

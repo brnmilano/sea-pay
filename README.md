@@ -46,7 +46,7 @@ docker-compose up -d
 # Desenvolvimento
 pnpm dev          # Inicia servidor de desenvolvimento (localhost:3000)
 pnpm build        # Cria build de produção otimizado
-pnpm start        # Inicia servidor de produção (requer build)
+pnpm start        # Inicia servidor de produção (requer o build antes)
 
 # Qualidade de código
 pnpm lint         # Executa ESLint para verificar problemas no código
