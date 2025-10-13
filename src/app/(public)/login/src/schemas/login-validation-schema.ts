@@ -1,9 +1,9 @@
 import * as zod from "zod";
-import { loginSchema, textSchema } from "@/schemas/schemas";
+import { cpfOrCnpjSchema, textSchema } from "@/schemas/schemas";
 
 // Schema de validação para o formulário de login
 export const LoginValidationSchema = zod.object({
-  login: loginSchema,
+  login: cpfOrCnpjSchema,
   password: textSchema,
 });
 

@@ -39,4 +39,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
   /** Se o botão está desabilitado */
   disabled?: boolean;
+
+  /** Referência para o elemento button */
+  ref?: React.Ref<HTMLButtonElement>;
 }

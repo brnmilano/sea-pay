@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { KeyboardEvent } from "react";
 import type { InputProps } from "./Input.types";

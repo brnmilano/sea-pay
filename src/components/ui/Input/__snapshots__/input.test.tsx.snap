@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Input Component should match snapshot. 1`] = `
+<div>
+  <div
+    class="container undefined"
+  >
+    <label
+      class="label"
+      for="«r0»"
+    >
+      Snapshot Input
+    </label>
+    <div
+      class="content"
+    >
+      <input
+        aria-description="Snapshot Input"
+        class="input undefined"
+        id="«r0»"
+        placeholder="Snapshot Input"
+        type="text"
+      />
+    </div>
+    <div
+      class="errorMessage undefined"
+    >
+      <p />
+    </div>
+  </div>
+</div>
+`;

@@ -32,13 +32,13 @@ jest.mock("next/navigation", () => ({
 }));
 
 describe("Login Component", () => {
-  test("should match snapshot", () => {
+  test("should match snapshot.", () => {
     const { container } = render(<Login />);
 
     expect(container).toMatchSnapshot();
   });
 
-  test("should render the title 'Access your account'", () => {
+  test("should render the title 'Access your account'.", () => {
     render(<Login />);
 
     const title = screen.getByText("Acesse sua conta");
@@ -46,7 +46,7 @@ describe("Login Component", () => {
     expect(title).toBeInTheDocument();
   });
 
-  test("should render the login form", () => {
+  test("should render the login form.", () => {
     render(<Login />);
 
     const loginInput = screen.getByPlaceholderText(
@@ -60,7 +60,7 @@ describe("Login Component", () => {
     expect(submitButton).toBeInTheDocument();
   });
 
-  test("should render the SeaPay logo", () => {
+  test("should render the SeaPay logo.", () => {
     render(<Login />);
 
     const logo = screen.getByAltText("Logo seaPay");
@@ -68,7 +68,7 @@ describe("Login Component", () => {
     expect(logo).toBeInTheDocument();
   });
 
-  test("should render the registration link", () => {
+  test("should render the registration link.", () => {
     render(<Login />);
 
     const signupText = screen.getByText(/Ainda não é membro\?/i);
@@ -79,7 +79,7 @@ describe("Login Component", () => {
     expect(signupLink).toHaveAttribute("href", "/signup");
   });
 
-  test("should render the background image", () => {
+  test("should render the background image.", () => {
     render(<Login />);
 
     const backgroundImage = screen.getByAltText("Pessoa sorrindo com celular");
@@ -87,7 +87,7 @@ describe("Login Component", () => {
     expect(backgroundImage).toBeInTheDocument();
   });
 
-  test("should render the open account link", () => {
+  test("should render the open account link.", () => {
     render(<Login />);
 
     const openAccountLink = screen.getByText("Abra sua conta!");
@@ -95,7 +95,7 @@ describe("Login Component", () => {
     expect(openAccountLink).toHaveAttribute("href", "/signup");
   });
 
-  test("should send the user to the dashboard on successful login", () => {
+  test("should send the user to the dashboard on successful login.", () => {
     const { useRouter } = require("next/navigation");
     const router = useRouter();
 
@@ -117,7 +117,7 @@ describe("Login Component", () => {
     });
   });
 
-  test("should show error message on failed login", async () => {
+  test("should show error message on failed login.", async () => {
     const toast = require("react-hot-toast").default;
 
     render(<Login />);

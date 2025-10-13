@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`Login Component should match snapshot 1`] = `
+exports[`Login Component should match snapshot. 1`] = `
 <div>
   <main
     class="containerLogin"
@@ -34,7 +34,7 @@ exports[`Login Component should match snapshot 1`] = `
             >
               <label
                 class="label"
-                for="«rg»"
+                for="«r0»"
               >
                 Login
               </label>
@@ -42,8 +42,9 @@ exports[`Login Component should match snapshot 1`] = `
                 class="content"
               >
                 <input
+                  aria-description="Campo de login, digite seu CPF ou CNPJ cadastrado"
                   class="input undefined"
-                  id="«rg»"
+                  id="«r0»"
                   name="login"
                   placeholder="Digite seu CPF ou CNPJ cadastrado"
                   type="text"
@@ -60,7 +61,7 @@ exports[`Login Component should match snapshot 1`] = `
             >
               <label
                 class="label"
-                for="«rh»"
+                for="«r1»"
               >
                 Senha
               </label>
@@ -68,14 +69,15 @@ exports[`Login Component should match snapshot 1`] = `
                 class="content"
               >
                 <input
+                  aria-description="Campo de senha, digite sua senha"
                   class="input undefined"
-                  id="«rh»"
+                  id="«r1»"
                   name="password"
                   placeholder="Digite sua senha"
                   type="password"
                 />
                 <span
-                  aria-controls="«rh»"
+                  aria-controls="«r1»"
                   aria-label="Mostrar senha"
                   aria-pressed="false"
                   class="icon clickable"

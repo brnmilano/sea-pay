@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { use, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,11 +21,13 @@ import { setAuthCookie } from "@/services/auth/auth-cookies";
 import Logo from "../../../../../../public/logo-seapay.svg";
 import BackgroundImage from "../../../../../../public/background-image.png";
 import styles from "./login.module.scss";
+import { Modal } from "@/components/ui/Modal";
 
 export default function Login() {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const {
     register,
@@ -78,70 +80,87 @@ export default function Login() {
   };
 
   return (
-    <main className={styles.containerLogin}>
-      <section className={styles.loginSection}>
-        <div className={styles.loginContent}>
-          <Image
-            src={Logo}
-            alt="Logo seaPay"
-            width={114}
-            height={42}
-            quality={70}
-            priority={true}
-            loading="eager"
-            className={styles.logo}
-          />
-
-          <h1 className={styles.title}>Acesse sua conta</h1>
-
-          <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
-            <div className={styles.inputContainer}>
-              <Input
-                label="Login"
-                placeholder="Digite seu CPF ou CNPJ cadastrado"
-                errors={errors}
-                registerField="login"
-                {...register("login")}
-              />
-
-              <Input
-                label="Senha"
-                placeholder="Digite sua senha"
-                type="password"
-                errors={errors}
-                registerField="password"
-                {...register("password")}
-              />
-            </div>
-
-            <Button
-              text={isLoading ? "Entrando..." : "Entrar"}
-              ariaLabel="Entrar"
-              size={ButtonSizes.LARGE}
-              buttonVariant={ButtonVariants.PRIMARY}
-              disabled={isLoading}
+    <>
+      <main className={styles.containerLogin}>
+        <section className={styles.loginSection}>
+          <div className={styles.loginContent}>
+            <Image
+              src={Logo}
+              alt="Logo seaPay"
+              width={114}
+              height={42}
+              quality={70}
+              priority={true}
+              loading="eager"
+              className={styles.logo}
             />
-          </form>
 
-          <p className={styles.signupText}>
-            Ainda não é membro?{" "}
-            <a href="/signup" className={styles.signupLink}>
-              Abra sua conta!
-            </a>
-          </p>
-        </div>
-      </section>
+            <h1 className={styles.title}>Acesse sua conta</h1>
 
-      <aside className={styles.loginImage}>
-        <Image
-          src={BackgroundImage}
-          alt="Pessoa sorrindo com celular"
-          priority={true}
-          fill
-          sizes="50vw"
-          quality={90}
-        />
-      </aside>
-    </main>
+            <form
+              className={styles.loginForm}
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <div className={styles.inputContainer}>
+                <Input
+                  label="Login"
+                  placeholder="Digite seu CPF ou CNPJ cadastrado"
+                  aria-description="Campo de login, digite seu CPF ou CNPJ cadastrado"
+                  errors={errors}
+                  registerField="login"
+                  {...register("login")}
+                />
+
+                <Input
+                  label="Senha"
+                  placeholder="Digite sua senha"
+                  aria-description="Campo de senha, digite sua senha"
+                  type="password"
+                  errors={errors}
+                  registerField="password"
+                  {...register("password")}
+                />
+              </div>
+
+              <Button
+                text={isLoading ? "Entrando..." : "Entrar"}
+                ariaLabel="Entrar"
+                size={ButtonSizes.LARGE}
+                buttonVariant={ButtonVariants.PRIMARY}
+                disabled={isLoading}
+              />
+            </form>
+
+            <p className={styles.signupText}>
+              Ainda não é membro?{" "}
+              <span
+                onClick={() => setIsOpen(true)}
+                className={styles.signupLink}
+              >
+                Abra sua conta!
+              </span>
+            </p>
+          </div>
+        </section>
+
+        <aside className={styles.loginImage}>
+          <Image
+            src={BackgroundImage}
+            alt="Pessoa sorrindo com celular"
+            priority={true}
+            fill
+            sizes="50vw"
+            quality={90}
+          />
+        </aside>
+      </main>
+
+      {/* Modal de Esqueci minha senha - Em desenvolvimento */}
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        is_shopkeeper={false}
+      />
+    </>
   );
 }

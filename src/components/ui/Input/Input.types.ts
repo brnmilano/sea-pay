@@ -33,6 +33,9 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    * Se não fornecido, será usado o valor da prop 'name' do input.
    */
   registerField?: Path<any>;
+
+  /** Referência para o elemento input */
+  ref?: React.Ref<HTMLInputElement>;
 }
 
 /**
