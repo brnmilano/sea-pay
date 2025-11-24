@@ -29,6 +29,9 @@ jest.mock("next/navigation", () => ({
   useSearchParams() {
     return new URLSearchParams();
   },
+  useState() {
+    return {};
+  },
 }));
 
 describe("Login Component", () => {
@@ -68,15 +71,25 @@ describe("Login Component", () => {
     expect(logo).toBeInTheDocument();
   });
 
-  test("should render the registration link.", () => {
+  test("should open modal when clicking on registration link.", () => {
     render(<Login />);
 
     const signupText = screen.getByText(/Ainda não é membro\?/i);
-    const signupLink = screen.getByText("Abra sua conta!");
+    const signupModal = screen.getByText("Abra sua conta!");
 
     expect(signupText).toBeInTheDocument();
-    expect(signupLink).toBeInTheDocument();
-    expect(signupLink).toHaveAttribute("href", "/signup");
+    expect(signupModal).toBeInTheDocument();
+
+    // Verifica que a modal não está visível inicialmente
+    expect(
+      screen.queryByRole("button", { name: /×/i }),
+    ).not.toBeInTheDocument();
+
+    // Simula o clique no link "Abra sua conta!"
+    fireEvent.click(signupModal);
+
+    // Verifica que a modal foi aberta (procura pelo botão de fechar)
+    expect(screen.getByRole("button", { name: /×/i })).toBeInTheDocument();
   });
 
   test("should render the background image.", () => {
@@ -87,12 +100,14 @@ describe("Login Component", () => {
     expect(backgroundImage).toBeInTheDocument();
   });
 
-  test("should render the open account link.", () => {
+  test("should render the open account text as clickable element.", () => {
     render(<Login />);
 
     const openAccountLink = screen.getByText("Abra sua conta!");
+
     expect(openAccountLink).toBeInTheDocument();
-    expect(openAccountLink).toHaveAttribute("href", "/signup");
+    expect(openAccountLink.tagName).toBe("SPAN");
+    expect(openAccountLink).toHaveClass("signupModal");
   });
 
   test("should send the user to the dashboard on successful login.", () => {

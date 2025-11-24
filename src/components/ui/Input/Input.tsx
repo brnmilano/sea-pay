@@ -2,7 +2,7 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { KeyboardEvent } from "react";
-import type { InputProps } from "./Input.types";
+import { InputProps } from "./input.types";
 import { useState, useCallback, useMemo, useId, useRef } from "react";
 import { Lock, LockKeyhole } from "lucide-react";
 import styles from "./input.module.scss";

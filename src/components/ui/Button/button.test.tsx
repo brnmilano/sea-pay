@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { Button } from "./Button";
-import { ButtonSizes, ButtonVariants } from "./Button.type";
+import { Button } from "./button";
+import { ButtonSizes, ButtonVariants } from "./button.type";
 
 describe("Button Component", () => {
   test("should match snapshot.", () => {

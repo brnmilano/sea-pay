@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { InputHTMLAttributes, ReactNode } from "react";
+import type { InputHTMLAttributes, ReactNode, Ref } from "react";
 import { FieldErrors, Path } from "react-hook-form";
 
 /**
@@ -28,6 +28,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    * Matriz de erros gerada pela biblioteca React Hook Form. É usado para renderizar o erro de entrada, se houver algum.
    */
   errors: FieldErrors<any>;
+
   /**
    * Propriedade utilizada para identificar a entrada do valor do input, também é utilizada no atributo "nome".
    * Se não fornecido, será usado o valor da prop 'name' do input.
@@ -35,7 +36,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   registerField?: Path<any>;
 
   /** Referência para o elemento input */
-  ref?: React.Ref<HTMLInputElement>;
+  ref?: Ref<HTMLInputElement>;
 }
 
 /**

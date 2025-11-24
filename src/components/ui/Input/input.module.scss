@@ -32,11 +32,11 @@
     flex: 1;
     padding: 0.75rem 0.625rem;
     font-family: var(--font-family);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     border: none;
     outline: none;
     background: transparent;
-    color: var(--semantic-gray-400);
+    color: var(--semantic-black);
 
     &::placeholder {
       color: var(--semantic-gray-400);
@@ -86,7 +86,7 @@
   bottom: -30px;
 
   p {
-    font-size: 0.75rem !important;
+    font-size: 0.85rem !important;
   }
 }
 

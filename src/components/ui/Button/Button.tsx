@@ -1,6 +1,6 @@
 "use client";
 
-import { ButtonSizes, ButtonVariants, type ButtonProps } from "./Button.type";
+import { ButtonSizes, ButtonVariants, type ButtonProps } from "./button.type";
 import styles from "./button.module.scss";
 
 export function Button(props: ButtonProps) {

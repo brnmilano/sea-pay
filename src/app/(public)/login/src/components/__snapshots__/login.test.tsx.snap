@@ -34,7 +34,7 @@ exports[`Login Component should match snapshot. 1`] = `
             >
               <label
                 class="label"
-                for="«r0»"
+                for="_r_0_"
               >
                 Login
               </label>
@@ -44,7 +44,7 @@ exports[`Login Component should match snapshot. 1`] = `
                 <input
                   aria-description="Campo de login, digite seu CPF ou CNPJ cadastrado"
                   class="input undefined"
-                  id="«r0»"
+                  id="_r_0_"
                   name="login"
                   placeholder="Digite seu CPF ou CNPJ cadastrado"
                   type="text"
@@ -61,7 +61,7 @@ exports[`Login Component should match snapshot. 1`] = `
             >
               <label
                 class="label"
-                for="«r1»"
+                for="_r_1_"
               >
                 Senha
               </label>
@@ -71,13 +71,13 @@ exports[`Login Component should match snapshot. 1`] = `
                 <input
                   aria-description="Campo de senha, digite sua senha"
                   class="input undefined"
-                  id="«r1»"
+                  id="_r_1_"
                   name="password"
                   placeholder="Digite sua senha"
                   type="password"
                 />
                 <span
-                  aria-controls="«r1»"
+                  aria-controls="_r_1_"
                   aria-label="Mostrar senha"
                   aria-pressed="false"
                   class="icon clickable"
@@ -133,12 +133,11 @@ exports[`Login Component should match snapshot. 1`] = `
         >
           Ainda não é membro?
            
-          <a
-            class="signupLink"
-            href="/signup"
+          <span
+            class="signupModal"
           >
             Abra sua conta!
-          </a>
+          </span>
         </p>
       </div>
     </section>

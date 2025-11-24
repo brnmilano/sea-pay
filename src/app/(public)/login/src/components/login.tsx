@@ -15,13 +15,13 @@ import { Button } from "@/components/ui/Button";
 import {
   ButtonSizes,
   ButtonVariants,
-} from "@/components/ui/Button/Button.type";
+} from "@/components/ui/Button/button.type";
 import { FAKE_USERS } from "@/utils/fake-users";
 import { setAuthCookie } from "@/services/auth/auth-cookies";
 import Logo from "../../../../../../public/logo-seapay.svg";
 import BackgroundImage from "../../../../../../public/background-image.png";
 import styles from "./login.module.scss";
-import { Modal } from "@/components/ui/Modal";
+import { CreateAccountModal } from "./create-account/create-account-modal";
 
 export default function Login() {
   const router = useRouter();
@@ -135,7 +135,7 @@ export default function Login() {
               Ainda não é membro?{" "}
               <span
                 onClick={() => setIsOpen(true)}
-                className={styles.signupLink}
+                className={styles.signupModal}
               >
                 Abra sua conta!
               </span>
@@ -155,12 +155,7 @@ export default function Login() {
         </aside>
       </main>
 
-      {/* Modal de Esqueci minha senha - Em desenvolvimento */}
-      <Modal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        is_shopkeeper={false}
-      />
+      <CreateAccountModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 }

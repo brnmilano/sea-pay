@@ -1,3 +1,3 @@
 // Barrel export para o componente Input
-export { Input } from "./Input";
-export type { InputProps } from "./Input.types";
+export { Input } from "./input";
+export type { InputProps } from "./input.types";

@@ -15,10 +15,14 @@ export const textSchema = zod
 // CPF ou CNPJ
 export const cpfOrCnpjSchema = zod
   .string({ message: requiredField })
-  .regex(cpfCnpjRegex, "Informe um CPF ou CNPJ válido (apenas números).");
+  .regex(cpfCnpjRegex, "Informe um CPF ou CNPJ válido (apenas números).")
+  .optional();
 
 // Email
 export const emailSchema = zod
   .string({ message: requiredField })
   .email("Informe um e-mail válido.")
   .min(1, requiredField);
+
+// Boolean
+export const booleanSchema = zod.boolean();
